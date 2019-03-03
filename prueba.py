@@ -1,33 +1,34 @@
-import sys
+import easygui
+
 users = {}
 status = ""
- 
+
 def displayMenu():
-    status = input("Are you registered user? y/n? Press q to quit")
+    status = easygui.enterbox(msg="Are you registered user? (y)/(n)? Press q to quit", title="Log In")
     if status == "y":
         oldUser()
     elif status == "n":
         newUser()
  
 def newUser():
-    createLogin = input("Create login name: ")
- 
+    createLogin = easygui.enterbox(msg="Create login name:" , title="Log In")
+
     if createLogin in users:
-        print("\nLogin name already exist!\n")
+        easygui.msgbox(msg="Login name already exist!", title="Log In")
     else:
-        createPassw = input("Create password: ")
+        createPassw = easygui.passwordbox(msg="Introduce your password :", title="Log In")
         users[createLogin] = createPassw
-        print("\nUser created\n")
+        easygui.msgbox(msg="User created" , title="Log In")
  
 def oldUser():
-    login = input("Enter login name: ")
-    passw = input("Enter password: ")
+    login = easygui.enterbox(msg="Enter log-in name:" , title="Log In")
+    passw = easygui.passwordbox(msg="Enter password:" , title="Log In")
  
     if login in users and users[login] == passw:
-        print("\nLogin successful!\n")
+        easygui.msgbox(msg="Login successful!", title="Log In")
     else:
-        print("\nUser doesn't exist or wrong password!\n")
+        easygui.msgbox(msg="That username doesn't exist or wrong pasword.", title="Log In")
  
 while status != "q":
     displayMenu()
-    sys.exit()
+    oldUser()
