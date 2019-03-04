@@ -1,6 +1,8 @@
 import easygui
+import sys
+import numpy as np
+np.savetxt("array.txt", np.array(users = [], fmt="%s")
 
-users = {}
 status = ""
 
 def displayMenu():
@@ -16,9 +18,11 @@ def newUser():
     if createLogin in users:
         easygui.msgbox(msg="Login name already exist!", title="Log In")
     else:
+
         createPassw = easygui.passwordbox(msg="Introduce your password :", title="Log In")
         users[createLogin] = createPassw
         easygui.msgbox(msg="User created" , title="Log In")
+
  
 def oldUser():
     login = easygui.enterbox(msg="Enter log-in name:" , title="Log In")
